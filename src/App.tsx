@@ -1,5 +1,9 @@
+import { Login } from "./pages/Login"
+
 export const App = () => {
   return (
-    <div>App</div>
+   <div className="">
+      <Login/>
+    </div>
   )
 }

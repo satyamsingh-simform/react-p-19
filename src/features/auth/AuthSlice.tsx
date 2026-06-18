@@ -23,7 +23,7 @@ export const loginUser=createAsyncThunk<User,LoginCredentials,{ rejectValue:unkn
             
             return response.data;
         }catch(err){
-            thunk.rejectWithValue(err)
+            return thunk.rejectWithValue(err);
         }
     }
 )

@@ -1,9 +1,8 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { useDispatch } from "react-redux"
 import z from "zod"
 import { loginUser } from "../features/auth/AuthSlice"
-import type { AppDispatch } from "../store"
+import { useAppDispatch } from "../hooks/useStoreType"
 
 const loginFormSchema=z.object({
     username:z.string().max(100,'max 100 char'),
@@ -14,7 +13,7 @@ type LoginDataType=z.infer<typeof loginFormSchema>
 
 export const Login = () => {
 
-    const dispatch= useDispatch<AppDispatch>();
+    const dispatch=useAppDispatch();
 
     const {register,handleSubmit,formState:{errors}}=useForm<LoginDataType>({
         resolver:zodResolver(loginFormSchema)

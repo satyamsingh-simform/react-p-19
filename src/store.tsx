@@ -7,5 +7,6 @@ export const store=configureStore({
     }
 })
 
-export type AuthSliceType=ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+export type AppStore = typeof store;
+export type RootState = ReturnType<AppStore['getState']>; //inside useSelector
+export type AppDispatch = AppStore['dispatch']; //dispatch action

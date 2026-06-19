@@ -1,8 +1,8 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import z from "zod"
-import { loginUser } from "../features/auth-thunk/AuthSlice"
 import { useAppDispatch } from "../hooks/useStoreType"
+import { fetchUserData } from "../features/auth-thunk/AuthSlice"
 
 const loginFormSchema=z.object({
     username:z.string().max(100,'max 100 char'),
@@ -22,7 +22,7 @@ export const Login = () => {
 
     function submitLoginData(data:LoginDataType){
         console.log(data);
-        dispatch(loginUser(data));
+        dispatch(fetchUserData(data));
     }
 
     return ( 

@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import authClient from "../../services/authClient";
 import type { InitialState, LoginCredentials, User } from "../../utils/authThunkType";
 
-export const loginUser=createAsyncThunk<User,LoginCredentials,{ rejectValue:string }>(
+export const fetchUserData=createAsyncThunk<User,LoginCredentials,{ rejectValue:string }>(
     'auth/login',
     async(loginData,thunk)=>{
         try{
@@ -52,17 +52,17 @@ const authSlice=createSlice({
     },
     extraReducers:(builder)=>{
         builder
-            .addCase(loginUser.pending,(state)=>{
+            .addCase(fetchUserData.pending,(state)=>{
                 state.loading=true;
                 state.error=null;
             })
-            .addCase(loginUser.fulfilled,(state,action)=>{
+            .addCase(fetchUserData.fulfilled,(state,action)=>{
                 state.loading=false;
                 state.error=null;
                 state.user=action.payload;
                 state.isAuthenticated=true;
             })
-            .addCase(loginUser.rejected,(state,action)=>{
+            .addCase(fetchUserData.rejected,(state,action)=>{
                 state.error=action.payload || 'login failed';
                 state.isAuthenticated=false;
             })

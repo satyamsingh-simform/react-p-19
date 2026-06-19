@@ -1,5 +1,5 @@
-import { logout } from "../features/auth-thunk/AuthSlice";
-import { useAppDispatch, useAppSelector } from "../hooks/useStoreType";
+import { logout } from "../../features/auth-thunk/AuthSlice";
+import { useAppDispatch, useAppSelector } from "../../hooks/useStoreType";
 
 export const Header = () => {
   const {user}=useAppSelector(store=>store.auth);

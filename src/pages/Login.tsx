@@ -2,8 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import z from "zod"
 import { loginUser } from "../features/auth-thunk/AuthSlice"
-import { useAppDispatch, useAppSelector } from "../hooks/useStoreType"
-import { useEffect } from "react"
+import { useAppDispatch } from "../hooks/useStoreType"
 
 const loginFormSchema=z.object({
     username:z.string().max(100,'max 100 char'),

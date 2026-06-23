@@ -25,7 +25,10 @@ export const RestaurantCard = ({restDataObj}:RestaurantCardProps) => {
             </div>
         </div>
             <div className="w-[95%] mx-auto mt-3">
-              <div className="font-bold text-lg ">{restDataObj?.info?.name}</div>
+              <div className="flex justify-between">
+                <div className="font-bold text-lg">{restDataObj?.info?.name}</div>
+                <div className="text-lg">{restDataObj.info.costForTwo}</div>
+              </div>
               <div className="flex items-center gap-0 ">
                 <svg
                   className="w-6 h-6 fill-green-600"

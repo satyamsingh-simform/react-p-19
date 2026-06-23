@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks/useStoreType"
 import { fetchRestMenuData } from "../../features/rest-menu-thunk/RestaurantMenuSlice";
 import { useParams } from "react-router";
 import RestaurantMenuCategory from "./RestaurantMenuCategory";
+import { Header } from "../header/Header";
 
 export const RestaurantMenu = () => {
     const [selected, setSelected] = useState<"veg"|'nonveg'|null>(null);
@@ -24,18 +25,19 @@ export const RestaurantMenu = () => {
     console.log('FILTER:',filterData);
 
     return (
-        <div>
-
-        <div className="w-[80%] mx-auto mt-20 mb-20">
-        <button className={`text-2xl py-2 px-8 mr-4 border rounded-2xl ${selected==="veg"? "bg-green-600": "bg-gray-300"} `} onClick={()=>setSelected(selected==='veg'?null:'veg')}>Veg</button>
-        <button className={`text-2xl py-2 px-4 border rounded-2xl ${selected==="nonveg"? "bg-red-500": "bg-gray-300"}`} onClick={()=>setSelected(selected==='nonveg'?null:'nonveg')}>Non veg</button>
+        <>
+        <Header/>
+        <div className="w-[50%] mx-auto flex flex-wrap text-black">
+            <div className="w-full mt-10 flex gap-4">
+                    <button className={`text-black border p-1 border-gray-300 rounded-2xl w-20 hover:cursor-pointer ${selected=='veg'?'bg-green-400':'bg-white'}`} onClick={()=>setSelected(selected=='veg'?null:'veg')}>Veg</button>
+                    <button className={`text-black border p-1 border-gray-300 rounded-2xl w-20 hover:cursor-pointer ${selected=='nonveg'?'bg-red-400':"bg-white"}`} onClick={()=>setSelected(selected=='nonveg'?null:'nonveg')}>NonVeg</button>
+                </div>
+                <div className='w-full mt-7 mb-3 text-gray-300'><hr /></div>
+        
+              {
+                filterData.map((menuItems)=><RestaurantMenuCategory key={menuItems?.card?.card?.title} menuItems={menuItems?.card?.card} foodselected={selected}></RestaurantMenuCategory>)
+              }
         </div>
-       
-        <div className="w-[80%] mx-auto mt-20">
-          {
-            filterData.map((menuItems)=><RestaurantMenuCategory key={menuItems?.card?.card?.title} menuItems={menuItems?.card?.card} foodselected={selected}></RestaurantMenuCategory>)
-          }
-        </div>
-        </div>
+        </>
     )
 }

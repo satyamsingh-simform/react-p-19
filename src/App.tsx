@@ -7,6 +7,7 @@ import { RestaurantOptions } from "./components/restaurant-details/RestaurantOpt
 import { RestaurantMenu } from "./components/restaurant-menu/RestaurantMenu"
 import { PublicRoute } from "./routes/PublicRoute"
 import { ProtectedRoute } from "./routes/ProtectedRoute"
+import { Cart } from "./components/cart/Cart"
 
 export const App = () => {
 
@@ -36,6 +37,7 @@ export const App = () => {
         <Route element={<ProtectedRoute/>}>
           <Route path="/restaurant" element={<RestaurantOptions/>}></Route>
           <Route path="/city/delhi/:id" element={<RestaurantMenu/>}></Route>
+          <Route path="/cart" element={<Cart/>}></Route>
         </Route>
         </Routes>
     </BrowserRouter>

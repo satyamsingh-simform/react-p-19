@@ -18,7 +18,6 @@ export const fetchUserData=createAsyncThunk<User,LoginCredentials,{ rejectValue:
 export const authCheck=createAsyncThunk<User,string, {rejectValue:string}>(
     'auth/check',
     async (token,thunk)=>{
-        console.log('authCheck call made',token);
         try{
             const response=await authClient.get('/me',{
                 headers:{

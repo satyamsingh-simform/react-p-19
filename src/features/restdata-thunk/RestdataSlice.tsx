@@ -6,8 +6,6 @@ export const fetchRestData=createAsyncThunk<RestData[]>(
     async (_,thunk)=>{
         try{
             const response=await restaurantClient('/restaurants?lat=28.7040592&lng=77.10249019999999');
-            console.log('REST:',response.data.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
-             
             return response.data.data.cards[1].card.card.gridElements.infoWithStyle.restaurants;
         }catch(err){
             return thunk.rejectWithValue('could not fetched data')
@@ -27,6 +25,10 @@ export type RestData={
             slaString:string,
         },
         locality:string,
+        aggregatedDiscountInfoV3:{
+            header:string,
+            subHeader:string,
+        }
     }
 }
 

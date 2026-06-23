@@ -16,8 +16,6 @@ export const App = () => {
 
   useEffect(()=>{
     const token=JSON.parse(localStorage.getItem("TOKEN:")!);
-    console.log('token-->',token);
-    
     if(token){
       dispatch(authCheck(token))
     }

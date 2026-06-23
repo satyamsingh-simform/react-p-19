@@ -11,7 +11,6 @@ export const RestaurantOptions = () => {
   const {restaurantData}=useAppSelector(store=>store.restSlice);
 
   useEffect(()=>{
-    console.log('rest-->',restaurantData);
     dispatch(fetchRestData());
   },[])
 
@@ -35,9 +34,3 @@ export const RestaurantOptions = () => {
     </>
   )
 }
-
-
-/*
-//https://swiggy-backend-rosy.vercel.app/api/menu?lat=28.7040592&lng=77.10249019999999&restaurantId=${id}
-//https://swiggy-backend-rosy.vercel.app/api/restaurants?lat=28.7040592&lng=77.10249019999999
-*/

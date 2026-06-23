@@ -22,7 +22,6 @@ export const RestaurantMenu = () => {
     }
     
     const filterData=RestaurantMenu.filter((items)=> 'title' in items?.card?.card);
-    console.log('FILTER:',filterData);
 
     return (
         <>

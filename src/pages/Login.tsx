@@ -12,16 +12,13 @@ type LoginDataType=z.infer<typeof loginFormSchema>
 
 
 export const Login = () => {
-
     const dispatch=useAppDispatch();
-    // const {user,isAuthenticated}=useAppSelector(store=>store.auth);
 
     const {register,handleSubmit,formState:{errors}}=useForm<LoginDataType>({
         resolver:zodResolver(loginFormSchema)
     })
 
     function submitLoginData(data:LoginDataType){
-        console.log(data);
         dispatch(fetchUserData(data));
     }
 

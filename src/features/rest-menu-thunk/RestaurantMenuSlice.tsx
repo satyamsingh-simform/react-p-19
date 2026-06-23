@@ -7,7 +7,6 @@ export const fetchRestMenuData=createAsyncThunk<RestMenu,string>(
     async(id,thunk)=>{
         try{
             const response=await restaurantClient(`/menu?lat=28.7040592&lng=77.10249019999999&restaurantId=${id}`);
-            console.log('RESPONSE-->',response.data.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
             return response.data.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
         }catch(err){
             return thunk.rejectWithValue('failed')

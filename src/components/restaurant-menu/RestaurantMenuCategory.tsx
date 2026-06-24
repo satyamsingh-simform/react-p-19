@@ -5,13 +5,25 @@ import RestaurantMenuCategoryCard from "./RestaurantMenuCategoryCard";
 type RestaurantMenuCategoryProps = {
     menuItems: MenuCategory;
     foodselected: "veg" | "nonveg" | null;
+    search:string;
 };
 
 export default function RestaurantMenuCategory({
     menuItems,
     foodselected,
+    search,
 }: RestaurantMenuCategoryProps) {
     const [isOpen, setIsOpen] = useState(true);
+
+    const filteredItems=menuItems?.itemCards?.filter(item=>
+        item.card.info.name
+            .toLowerCase()
+            .includes(search.toLowerCase())
+    );
+
+    if(search && filteredItems?.length===0){
+        return null;
+    }
 
     if ("categories" in menuItems) {
         return (
@@ -34,6 +46,7 @@ export default function RestaurantMenuCategory({
                             key={items?.title}
                             menuItems={items}
                             foodselected={foodselected}
+                            search={search}
                         />
                     ))}
                 </div>
@@ -88,7 +101,7 @@ export default function RestaurantMenuCategory({
                     </div>
 
                     <div>
-                        {menuItems?.itemCards
+                        {filteredItems
                             ?.filter(
                                 (food) => "isVeg" in food?.card?.info
                             )
@@ -132,7 +145,7 @@ export default function RestaurantMenuCategory({
                     </div>
 
                     <div>
-                        {menuItems?.itemCards
+                        {filteredItems
                             ?.filter(
                                 (food) => !("isVeg" in food?.card?.info)
                             )
@@ -169,7 +182,7 @@ export default function RestaurantMenuCategory({
                 </div>
 
                 <div>
-                    {menuItems?.itemCards?.map((items) => (
+                    {filteredItems?.map((items) => (
                         <RestaurantMenuCategoryCard
                             key={items?.card?.info?.id}
                             restData={items?.card?.info}

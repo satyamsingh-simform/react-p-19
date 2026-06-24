@@ -9,15 +9,26 @@ export const RestaurantCard = ({restDataObj}:RestaurantCardProps) => {
   return (
     <Link to={`/city/delhi/`+restDataObj.info.id}>
         <div className="w-85 mb-2 transform transition duration-200 hover:scale-95 hover:cursor-pointer">
+            <div className="relative">
             <img
-              className="w-full h-55 object-cover rounded-xl"
+              className="w-full h-47 object-cover rounded-xl"
               src={
                 "https://media-assets.swiggy.com/swiggy/image/upload/" +
                 restDataObj?.info?.cloudinaryImageId
               }
-            ></img>
+            />
+            <div className="absolute inset-0 rounded-xl bg-linear-to-t from-black/90 via-black/20 to-transparent"></div>
+            <div className="absolute bottom-3 left-3 text-white font-bold text-xl">
+                {restDataObj.info.aggregatedDiscountInfoV3.header}
+                {" "}
+                {restDataObj.info.aggregatedDiscountInfoV3.subHeader}
+            </div>
+        </div>
             <div className="w-[95%] mx-auto mt-3">
-              <div className="font-bold text-lg ">{restDataObj?.info?.name}</div>
+              <div className="flex justify-between">
+                <div className="font-bold text-lg">{restDataObj?.info?.name}</div>
+                <div className="text-lg">{restDataObj.info.costForTwo}</div>
+              </div>
               <div className="flex items-center gap-0 ">
                 <svg
                   className="w-6 h-6 fill-green-600"

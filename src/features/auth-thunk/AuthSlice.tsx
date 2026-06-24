@@ -1,16 +1,17 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import authClient from "../../services/authClient";
 import type { InitialState, LoginCredentials, User } from "../../utils/authThunkType";
+import { TOKEN } from "../../utils/constants";
 
 export const fetchUserData=createAsyncThunk<User,LoginCredentials,{ rejectValue:string }>(
     'auth/login',
     async(loginData,thunk)=>{
         try{
             const response=await authClient.post('/login',loginData);
-            localStorage.setItem("TOKEN:",JSON.stringify(response.data.accessToken))
+            localStorage.setItem(TOKEN,JSON.stringify(response.data.accessToken))
             return response.data;
         }catch(err:any){
-            return thunk.rejectWithValue('login failed');
+            return thunk.rejectWithValue('login failed invalid credential');
         }
     }
 )
@@ -18,7 +19,6 @@ export const fetchUserData=createAsyncThunk<User,LoginCredentials,{ rejectValue:
 export const authCheck=createAsyncThunk<User,string, {rejectValue:string}>(
     'auth/check',
     async (token,thunk)=>{
-        console.log('authCheck call made',token);
         try{
             const response=await authClient.get('/me',{
                 headers:{
@@ -35,7 +35,7 @@ export const authCheck=createAsyncThunk<User,string, {rejectValue:string}>(
 const initialState:InitialState={
     user:null,
     isAuthenticated:false,
-    loading:false,
+    loading:true,
     error:null,
 }
 
@@ -65,6 +65,7 @@ const authSlice=createSlice({
             .addCase(fetchUserData.rejected,(state,action)=>{
                 state.error=action.payload || 'login failed';
                 state.isAuthenticated=false;
+                state.loading=false;
             })
 
             //authCheck

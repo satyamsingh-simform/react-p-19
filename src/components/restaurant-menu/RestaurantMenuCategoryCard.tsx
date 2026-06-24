@@ -12,18 +12,11 @@ export default function RestaurantMenuCategoryCard({restData}:RestaurantMenuCate
             item=>Number(item.id)==Number(restData.id)
         )
     );
-    console.log(cartItem);
-    
     const count=cartItem?.quantity || 0;
-    console.log('POUNT',count);
     
     const dispatch=useAppDispatch();
 
-
     function handleAddItems(){
-        console.log(restData.name);
-        console.log(restData.id);
-        console.log(restData);
         dispatch(addItems(restData));
     }
     function handleIncItems(){

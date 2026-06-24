@@ -1,14 +1,17 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { logout } from "../../features/auth-thunk/AuthSlice";
 import { useAppDispatch, useAppSelector } from "../../hooks/useStoreType";
+import { TOKEN } from "../../utils/constants";
 
 export const Header = () => {
+  const navigate=useNavigate();
   const {user}=useAppSelector(store=>store.auth);
   const dispatch=useAppDispatch();
   
   function handleLogout(){
-    localStorage.removeItem("TOKEN:");
+    localStorage.removeItem(TOKEN);
     dispatch(logout());
+    navigate('/');
   }
 
   const {count}=useAppSelector(store=>store.cart)

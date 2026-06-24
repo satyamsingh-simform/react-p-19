@@ -1,13 +1,15 @@
 import { BrowserRouter, Route, Routes } from "react-router"
 import { Login } from "./pages/Login"
 import { useAppDispatch, useAppSelector } from "./hooks/useStoreType"
-import { authCheck } from "./features/auth-thunk/AuthSlice"
+import { authCheck, logout } from "./features/auth-thunk/AuthSlice"
 import { useEffect } from "react"
 import { RestaurantOptions } from "./components/restaurant-details/RestaurantOptions"
 import { RestaurantMenu } from "./components/restaurant-menu/RestaurantMenu"
 import { PublicRoute } from "./routes/PublicRoute"
 import { ProtectedRoute } from "./routes/ProtectedRoute"
 import { Cart } from "./components/cart/Cart"
+import { Home } from "./components/home/Home"
+import { TOKEN } from "./utils/constants"
 
 export const App = () => {
 
@@ -15,23 +17,28 @@ export const App = () => {
   const { loading } = useAppSelector((store) => store.auth);
 
   useEffect(()=>{
-    const token=JSON.parse(localStorage.getItem("TOKEN:")!);
-    console.log('token-->',token);
-    
+    const token=JSON.parse(localStorage.getItem(TOKEN)!);
     if(token){
       dispatch(authCheck(token))
+    }
+    else{
+        dispatch(logout());
     }
   },[])
 
   if (loading) {
-    return <h1>Loading...</h1>;
+    return (
+      <div className="h-screen flex justify-center items-center">
+        <span className="loading loading-spinner loading-xl"></span>
+      </div>
+    );
   }
 
   return (
     <BrowserRouter>
       <Routes>
         <Route element={<PublicRoute/>}>
-          <Route path="/" element={<Login/>}></Route>
+          <Route path="/" element={<Home/>}></Route>
           <Route path="/login" element={<Login/>}></Route>
         </Route>
         <Route element={<ProtectedRoute/>}>

@@ -2,13 +2,11 @@ import { useAppSelector } from "../../hooks/useStoreType";
 
 export const Cart = () => {
   const { cartFood } = useAppSelector((store) => store.cart);
-  console.log("CARTfood", cartFood);
 
   const grandTotal = cartFood.reduce(
     (acc, food) => acc + (food.price ? food.price/ 100 : food.defaultPrice ? food.defaultPrice/ 100 : 0) * food.quantity,
     0,
   );
-
   const totalItems = cartFood.reduce((acc, food) => acc + food.quantity, 0);
 
   return (

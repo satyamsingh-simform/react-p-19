@@ -1,8 +1,8 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import z from "zod"
-import { loginUser } from "../features/auth-thunk/AuthSlice"
-import { useAppDispatch } from "../hooks/useStoreType"
+import { useAppDispatch, useAppSelector } from "../hooks/useStoreType"
+import { fetchUserData } from "../features/auth-thunk/AuthSlice"
 
 const loginFormSchema=z.object({
     username:z.string().max(100,'max 100 char'),
@@ -12,17 +12,15 @@ type LoginDataType=z.infer<typeof loginFormSchema>
 
 
 export const Login = () => {
-
     const dispatch=useAppDispatch();
-    // const {user,isAuthenticated}=useAppSelector(store=>store.auth);
+    const {error}=useAppSelector(store=>store.auth);
 
     const {register,handleSubmit,formState:{errors}}=useForm<LoginDataType>({
         resolver:zodResolver(loginFormSchema)
     })
 
     function submitLoginData(data:LoginDataType){
-        console.log(data);
-        dispatch(loginUser(data));
+        dispatch(fetchUserData(data));
     }
 
     return ( 
@@ -46,7 +44,10 @@ export const Login = () => {
                    />
                     {errors.password && <span className="text-error">{errors.password.message}</span>}
                 </div>
-                <div className="form-control flex justify-center mt-3">
+                {
+                    error && <p className="text-red-500 text-center ">{error}</p>
+                }
+                <div className="form-control flex justify-center ">
                     <button className="btn btn-primary" type="submit">Login</button>
                 </div>
                 <div className="text-center text-sm">

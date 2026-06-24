@@ -4,6 +4,7 @@ import { fetchRestMenuData } from "../../features/rest-menu-thunk/RestaurantMenu
 import { useParams,useSearchParams } from "react-router";
 import RestaurantMenuCategory from "./RestaurantMenuCategory";
 import { Header } from "../header/Header";
+import { MenuSkeleton } from "../skeleton/MenuSkeleton";
 
 export const RestaurantMenu = () => {
     const [searchParams,setSearchParams]=useSearchParams();
@@ -19,7 +20,7 @@ export const RestaurantMenu = () => {
     },[])
 
     if(!RestaurantMenu){
-        return <h1>NO data </h1>
+        return <MenuSkeleton/>
     }
     
     const search=searchParams.get('search')||'';

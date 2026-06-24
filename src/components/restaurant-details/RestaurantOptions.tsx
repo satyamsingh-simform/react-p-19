@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 import { Header } from "../header/Header"
-import Shimmer from "../Shimmer"
 import { useAppDispatch, useAppSelector } from "../../hooks/useStoreType"
 import { fetchRestData } from "../../features/restdata-thunk/RestdataSlice"
 import { RestaurantCard } from "./RestaurantCard"
+import RestSkeleton from "../skeleton/RestSkeleton"
 
 
 export const RestaurantOptions = () => {
@@ -16,7 +16,7 @@ export const RestaurantOptions = () => {
   },[])
 
   if(!restaurantData){
-    return <Shimmer/>
+    return <RestSkeleton/>
   }
 
   const sortedRestaurants=[...restaurantData].sort((a,b)=>{

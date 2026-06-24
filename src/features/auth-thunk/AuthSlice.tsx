@@ -34,7 +34,7 @@ export const authCheck=createAsyncThunk<User,string, {rejectValue:string}>(
 const initialState:InitialState={
     user:null,
     isAuthenticated:false,
-    loading:false,
+    loading:true,
     error:null,
 }
 

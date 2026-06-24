@@ -9,6 +9,7 @@ import { PublicRoute } from "./routes/PublicRoute"
 import { ProtectedRoute } from "./routes/ProtectedRoute"
 import { Cart } from "./components/cart/Cart"
 import { Home } from "./components/home/Home"
+import { TOKEN } from "./utils/constants"
 
 export const App = () => {
 
@@ -16,7 +17,7 @@ export const App = () => {
   const { loading } = useAppSelector((store) => store.auth);
 
   useEffect(()=>{
-    const token=JSON.parse(localStorage.getItem("TOKEN:")!);
+    const token=JSON.parse(localStorage.getItem(TOKEN)!);
     if(token){
       dispatch(authCheck(token))
     }

@@ -45,7 +45,7 @@ export const Login = () => {
                     {errors.password && <span className="text-error">{errors.password.message}</span>}
                 </div>
                 {
-                    error && <p className="text-red-500 text-center ">{error} invalid credential</p>
+                    error && <p className="text-red-500 text-center ">{error}</p>
                 }
                 <div className="form-control flex justify-center ">
                     <button className="btn btn-primary" type="submit">Login</button>

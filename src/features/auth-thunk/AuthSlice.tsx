@@ -1,16 +1,17 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import authClient from "../../services/authClient";
 import type { InitialState, LoginCredentials, User } from "../../utils/authThunkType";
+import { TOKEN } from "../../utils/constants";
 
 export const fetchUserData=createAsyncThunk<User,LoginCredentials,{ rejectValue:string }>(
     'auth/login',
     async(loginData,thunk)=>{
         try{
             const response=await authClient.post('/login',loginData);
-            localStorage.setItem("TOKEN:",JSON.stringify(response.data.accessToken))
+            localStorage.setItem(TOKEN,JSON.stringify(response.data.accessToken))
             return response.data;
         }catch(err:any){
-            return thunk.rejectWithValue('login failed');
+            return thunk.rejectWithValue('login failed invalid credential');
         }
     }
 )

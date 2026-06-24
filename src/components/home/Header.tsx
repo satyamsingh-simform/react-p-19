@@ -1,6 +1,11 @@
+import type { RefObject } from "react";
 import { Link } from "react-router";
 
-export default function Header(){
+type HeaderProps={
+    searchRef:RefObject<HTMLInputElement|null>;
+}
+
+export default function Header({searchRef}:HeaderProps){
     return(
         <>
         <header className="bg-[#ff5200]">
@@ -40,11 +45,13 @@ export default function Header(){
                     src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/portal/testing/seo-home/Sushi_replace.png" 
                     alt="food-img" />
 
-                    <div className="bg-white p-5 w-80 rounded-2xl">
-                        <input type="text" value="" placeholder="Enter your delivery location"></input>
+                    <div className="bg-white w-80 rounded-2xl">
+                        <input type="text" placeholder="Enter your delivery location" className="w-full p-5 rounded-2xl"></input>
                     </div>
-                    <div className="bg-white p-5 w-125 rounded-2xl">
-                        <input type="text" value="" placeholder="Enter your delivery location"></input>
+                    <div className="bg-white w-125 rounded-2xl">
+                        <input type="text" placeholder="Enter your delivery location" className="w-full p-5 rounded-2xl"
+                        ref={searchRef}
+                        ></input>
                     </div>
                 </article>
             </section>
@@ -66,9 +73,7 @@ export default function Header(){
                         alt="dineout" />
                     </a>
                 </div>
-                
             </section>
-            
         </header>
         </>
     )

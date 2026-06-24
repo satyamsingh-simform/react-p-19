@@ -5,7 +5,6 @@ type RestCardProps={
 }
 
 export default function DineoutCard(props:RestCardProps){
-    console.log(props);
     
     return(
         <article className="w-82 h-92 flex-none bg-white shadow-2xl border border-gray-200 rounded-t-3xl relative">

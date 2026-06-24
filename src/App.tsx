@@ -8,7 +8,7 @@ import { RestaurantMenu } from "./components/restaurant-menu/RestaurantMenu"
 import { PublicRoute } from "./routes/PublicRoute"
 import { ProtectedRoute } from "./routes/ProtectedRoute"
 import { Cart } from "./components/cart/Cart"
-import { Home } from "lucide-react"
+import { Home } from "./components/home/Home"
 
 export const App = () => {
 

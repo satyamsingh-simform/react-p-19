@@ -5,7 +5,6 @@ type FoodCardProps={
 }
 
 export default function FoodCard(props:FoodCardProps){
-    console.log(props);
     
     return(
         <>

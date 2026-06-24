@@ -64,6 +64,7 @@ const authSlice=createSlice({
             .addCase(fetchUserData.rejected,(state,action)=>{
                 state.error=action.payload || 'login failed';
                 state.isAuthenticated=false;
+                state.loading=false;
             })
 
             //authCheck

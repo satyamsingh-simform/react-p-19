@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import z from "zod"
-import { useAppDispatch } from "../hooks/useStoreType"
+import { useAppDispatch, useAppSelector } from "../hooks/useStoreType"
 import { fetchUserData } from "../features/auth-thunk/AuthSlice"
 
 const loginFormSchema=z.object({
@@ -13,6 +13,7 @@ type LoginDataType=z.infer<typeof loginFormSchema>
 
 export const Login = () => {
     const dispatch=useAppDispatch();
+    const {error}=useAppSelector(store=>store.auth);
 
     const {register,handleSubmit,formState:{errors}}=useForm<LoginDataType>({
         resolver:zodResolver(loginFormSchema)
@@ -43,7 +44,10 @@ export const Login = () => {
                    />
                     {errors.password && <span className="text-error">{errors.password.message}</span>}
                 </div>
-                <div className="form-control flex justify-center mt-3">
+                {
+                    error && <p className="text-red-500 text-center ">{error} invalid credential</p>
+                }
+                <div className="form-control flex justify-center ">
                     <button className="btn btn-primary" type="submit">Login</button>
                 </div>
                 <div className="text-center text-sm">

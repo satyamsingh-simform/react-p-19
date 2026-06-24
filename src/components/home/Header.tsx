@@ -26,7 +26,7 @@ export default function Header({searchRef}:HeaderProps){
                     <div className="flex gap-10">
                         <button className="border px-7 py-3 rounded-2xl">Get the App</button>
                         <Link to='/login'>
-                            <button className="px-10 py-3 rounded-2xl bg-black">Sign in</button>
+                            <button className="px-10 py-3 rounded-2xl bg-black hover:cursor-pointer">Sign in</button>
                         </Link>
                     </div>
                 </article>
@@ -57,21 +57,21 @@ export default function Header({searchRef}:HeaderProps){
             </section>
             <section>
                 <div className="flex justify-center">
-                    <a href="#">
+                    <Link to='/restaurant'>
                         <img  className="w-99 h-91" 
                         src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/MERCHANDISING_BANNERS/IMAGES/MERCH/2024/7/23/ec86a309-9b06-48e2-9adc-35753f06bc0a_Food3BU.png" 
                         alt="order food" />
-                    </a>
-                    <a href="#">
-                        <img className="w-99 h-91" 
+                    </Link>
+                    <Link to='/restaurant'>
+                        <img  className="w-99 h-91" 
                         src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/MERCHANDISING_BANNERS/IMAGES/MERCH/2024/7/23/ec86a309-9b06-48e2-9adc-35753f06bc0a_Food3BU.png" 
-                        alt="instamart" />
-                    </a>
-                    <a href="#">
-                        <img className="w-99 h-91" 
+                        alt="order food" />
+                    </Link>
+                    <Link to='/restaurant'>
+                        <img  className="w-99 h-91" 
                         src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/MERCHANDISING_BANNERS/IMAGES/MERCH/2024/7/23/ec86a309-9b06-48e2-9adc-35753f06bc0a_Food3BU.png" 
-                        alt="dineout" />
-                    </a>
+                        alt="order food" />
+                    </Link>
                 </div>
             </section>
         </header>

@@ -25,7 +25,7 @@ export default function Header({searchRef}:HeaderProps){
                     </nav>
                     <div className="flex gap-10">
                         <button className="border px-7 py-3 rounded-2xl">Get the App</button>
-                        <Link to='/login'>
+                        <Link to='/'>
                             <button className="px-10 py-3 rounded-2xl bg-black hover:cursor-pointer">Sign in</button>
                         </Link>
                     </div>

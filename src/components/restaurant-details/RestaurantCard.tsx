@@ -1,5 +1,5 @@
 import { Link } from "react-router"
-import type { RestData } from "../../features/restdata-thunk/RestdataSlice"
+import type { RestData } from "../../utils/restdataThunkType"
 
 type RestaurantCardProps={
     restDataObj:RestData
